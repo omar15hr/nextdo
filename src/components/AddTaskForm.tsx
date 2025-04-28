@@ -1,7 +1,7 @@
 export function AddTaskForm() {
   return (
-    <div className="flex flex-col gap-5 bg-white p-5 rounded-md shadow">
-      <h2 className="text-lg font-bold font-inter">Add new task</h2>
+    <div className="flex flex-col gap-5 justify-center bg-white p-5 rounded-md shadow">
+      <h2 className="text-lg font-bold font-inter text-center">Add new task</h2>
 
       <div className="flex gap-5 justify-between items-center">
         <input
@@ -11,7 +11,7 @@ export function AddTaskForm() {
         />
 
         <button className="h-10 w-32 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer">
-          Add Task
+          <span>Add Task</span>
         </button>
       </div>
       <div className="flex justify-between items-center gap-5">

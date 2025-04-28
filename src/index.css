@@ -10,10 +10,10 @@
   src: url("./assets/fonts/PermanentMarker.ttf");
 }
 
-.font-inter {
-  font-family: Inter, sans-serif;
-}
-
 .font-permanent-marker {
   font-family: Permanent Marker, sans-serif;
+}
+
+html, body {
+  font-family: Inter, sans-serif;
 }
