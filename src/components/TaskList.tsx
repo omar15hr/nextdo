@@ -30,7 +30,7 @@ export function TaskList() {
   return (
     <div className="flex flex-col gap-2">
       {tasks.map((task) => (
-        <TaskCard task={task} />
+        <TaskCard key={task.id} task={task} />
       ))}
     </div>
   );

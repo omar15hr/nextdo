@@ -1,6 +1,7 @@
 import { CategoryButton } from "./components/CategoryButton";
 import { Header } from "./components/Header";
 import { PlusIcon } from "./components/Icons";
+import { PriorityFilter } from "./components/PriorityFilter";
 import { TaskList } from "./components/TaskList";
 
 const categories = [
@@ -30,8 +31,11 @@ function App() {
             <span>New Task</span>
           </button>
         </div>
-        <div className="flex flex-col rounded-md gap-2">
-          <h2 className="text-xl">All Tasks</h2>
+        <div className="flex flex-col justify-center rounded-md gap-2">
+          <div className="flex items-center justify-between gap-5">
+            <h2 className="text-xl">All Tasks</h2>
+            <PriorityFilter />
+          </div>
           <TaskList />
         </div>
       </div>
