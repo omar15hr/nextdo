@@ -20,7 +20,7 @@ function App() {
         {categories.map(({ text, color }) => (
           <CategoryButton text={text} color={color} />
         ))}
-        <button className="flex items-center justify-center w-42 h-11 gap-2 p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow cursor-pointer">
+        <button className="flex items-center justify-center w-42 h-11 gap-2 p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow cursor-pointer transition duration-300 ease-in-out">
           <PlusIcon />
           <span>New Task</span>
         </button>

@@ -7,7 +7,7 @@ export function TaskList() {
         <button className="cursor-grab">
           <ToggleIcon />
         </button>
-        <input type="checkbox" className="h-4 w-4"></input>
+        <input type="checkbox" className="h-4 w-4 cursor-pointer"></input>
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span
