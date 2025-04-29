@@ -1,5 +1,11 @@
 import clsx from "clsx";
-import { CalendarIcon, ToggleIcon, TrashIcon } from "./Icons";
+import {
+  CalendarIcon,
+  CircleCheckIcon,
+  CircleIcon,
+  ToggleIcon,
+  TrashIcon,
+} from "./Icons";
 import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
 
@@ -23,6 +29,14 @@ const categoryStyles: Record<Task["category"], string> = {
 
 export function TaskCard({ task }: Props) {
   const deleteTask = useTasksStore((state) => state.deleteTask);
+  const toggleCompleteTask = useTasksStore((state) => state.toggleCompleteTask);
+
+  const handleToggleComplete = () => {
+    toggleCompleteTask(task.id, {
+      ...task,
+      completed: !task.completed,
+    });
+  };
 
   return (
     <div className="flex items-center justify-between gap-5 bg-white py-4 px-6 rounded-md shadow">
@@ -30,7 +44,11 @@ export function TaskCard({ task }: Props) {
         <button className="cursor-grab">
           <ToggleIcon />
         </button>
-        <input type="checkbox" className="h-4 w-4 cursor-pointer"></input>
+
+        <button onClick={handleToggleComplete}>
+          {task.completed ? <CircleCheckIcon /> : <CircleIcon />}
+        </button>
+
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
             <span

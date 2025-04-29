@@ -6,6 +6,7 @@ interface State {
   tasks: Task[];
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
+  toggleCompleteTask: (id: string, updatedTask: Task) => void;
 }
 
 const initialState: Task[] = [
@@ -15,7 +16,7 @@ const initialState: Task[] = [
     priority: "High",
     category: "Work",
     createdAt: new Date(),
-    completed: false
+    completed: false,
   },
   {
     id: uuid(),
@@ -23,7 +24,7 @@ const initialState: Task[] = [
     priority: "Medium",
     category: "Personal",
     createdAt: new Date(),
-    completed: false
+    completed: false,
   },
   {
     id: uuid(),
@@ -31,7 +32,7 @@ const initialState: Task[] = [
     priority: "Low",
     category: "Projects",
     createdAt: new Date(),
-    completed: false
+    completed: false,
   },
 ];
 
@@ -44,5 +45,11 @@ export const useTasksStore = create<State>((set) => ({
   deleteTask: (id) =>
     set((state) => ({
       tasks: state.tasks.filter((task) => task.id !== id),
+    })),
+  toggleCompleteTask: (id: string, updatedTask: Task) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === id ? updatedTask : task
+      ),
     })),
 }));
