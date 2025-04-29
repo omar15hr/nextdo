@@ -1,37 +1,46 @@
 import { create } from "zustand";
 import { Task } from "../interfaces/task.interface";
+import { v4 as uuid } from "uuid";
 
 interface State {
   tasks: Task[];
-  deleteTask: (id: number) => void;
+  addTask: (task: Task) => void;
+  deleteTask: (id: string) => void;
 }
 
 const initialState: Task[] = [
   {
-    id: 1,
+    id: uuid(),
     title: "Complete project proposal",
     priority: "High",
     category: "Work",
-    createdAt: "May 12",
+    createdAt: new Date(),
+    completed: false
   },
   {
-    id: 2,
+    id: uuid(),
     title: "Schudele meeting",
     priority: "Medium",
     category: "Personal",
-    createdAt: "May 20",
+    createdAt: new Date(),
+    completed: false
   },
   {
-    id: 3,
+    id: uuid(),
     title: "Finish project",
     priority: "Low",
     category: "Projects",
-    createdAt: "Jun 17",
+    createdAt: new Date(),
+    completed: false
   },
 ];
 
 export const useTasksStore = create<State>((set) => ({
   tasks: initialState,
+  addTask: (task) =>
+    set((state) => ({
+      tasks: [...state.tasks, task],
+    })),
   deleteTask: (id) =>
     set((state) => ({
       tasks: state.tasks.filter((task) => task.id !== id),

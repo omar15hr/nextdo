@@ -10,7 +10,7 @@ import { AnimatePresence, motion } from "motion/react";
 const categories = [
   { text: "All Tasks", color: "text-blue-500", icon: <TagIcon /> },
   { text: "Personal", color: "text-green-500", icon: <UserIcon /> },
-  { text: "Healt", color: "text-red-500", icon: <HeartIcon /> },
+  { text: "Health", color: "text-red-500", icon: <HeartIcon /> },
   { text: "Finance", color: "text-yellow-500", icon: <CoinIcon /> },
   { text: "Projects", color: "text-purple-500", icon: <SuitcaseIcon /> },
   { text: "Work", color: "text-sky-500", icon: <WorkIcon /> },
@@ -29,7 +29,7 @@ function App() {
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5">
           {categories.map(({ text, color, icon }) => (
-            <CategoryButton text={text} color={color} icon={icon} />
+            <CategoryButton key={text} text={text} color={color} icon={icon} />
           ))}
           <motion.button
             onClick={() => setIsVisible(!isVisible)}

@@ -14,11 +14,11 @@ const priorityStyles: Record<Task["priority"], string> = {
 };
 
 const categoryStyles: Record<Task["category"], string> = {
-  Personal: "bg-green-600 text-white",
-  Health: "bg-purple-600 text-white",
-  Finance: "bg-yellow-600 text-white",
-  Projects: "bg-orange-600 text-white",
-  Work: "bg-sky-600 text-white",
+  Personal: "bg-green-500 text-white",
+  Health: "bg-purple-500 text-white",
+  Finance: "bg-yellow-500 text-white",
+  Projects: "bg-orange-500 text-white",
+  Work: "bg-sky-500 text-white",
 };
 
 export function TaskCard({ task }: Props) {
@@ -49,7 +49,7 @@ export function TaskCard({ task }: Props) {
             </span>
             <span
               className={clsx(
-                "flex items-center bg-blue-700 text-white p-1 text-xs rounded-full px-2",
+                "flex items-center p-1 text-xs rounded-full px-2",
                 categoryStyles[task.category]
               )}
             >
@@ -57,7 +57,7 @@ export function TaskCard({ task }: Props) {
             </span>
             <div className="flex gap-2 items-center bg-gray-200 text-gray-500 p-1 text-xs rounded-full px-2">
               <CalendarIcon />
-              <span>{task.createdAt}</span>
+              <span>{task.createdAt.toLocaleDateString()}</span>
             </div>
           </div>
         </div>

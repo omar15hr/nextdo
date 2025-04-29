@@ -1,7 +1,11 @@
+export type Priority = "High" | "Medium" | "Low";
+export type Category = "Personal" | "Health" | "Finance" | "Projects" | "Work";
+
 export interface Task {
-  id:  number;
+  id: string;
   title: string;
-  priority: string;
-  category: string;
-  createdAt: string;
+  priority: Priority;
+  category: Category;
+  createdAt: Date;
+  completed: boolean;
 }
