@@ -17,7 +17,7 @@ const categories = [
 ];
 
 function App() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="flex flex-col bg-[#edede9] min-h-screen">
@@ -41,7 +41,6 @@ function App() {
           </motion.button>
         </div>
 
-        <div>
           <AnimatePresence initial={false}>
             {isVisible ? (
               <motion.div
@@ -54,7 +53,6 @@ function App() {
               </motion.div>
             ) : null}
           </AnimatePresence>
-        </div>
 
         <div className="flex flex-col justify-center rounded-md gap-2">
           <div className="flex items-center justify-between gap-5">

@@ -3,6 +3,7 @@ import { Task } from "../interfaces/task.interface";
 
 interface State {
   tasks: Task[];
+  deleteTask: (id: number) => void;
 }
 
 const initialState: Task[] = [
@@ -21,14 +22,18 @@ const initialState: Task[] = [
     createdAt: "May 20",
   },
   {
-    id: 2,
+    id: 3,
     title: "Finish project",
     priority: "Low",
     category: "Projects",
     createdAt: "Jun 17",
   },
-]
+];
 
-export const useTasksStore = create<State>((get, set) => ({
+export const useTasksStore = create<State>((set) => ({
   tasks: initialState,
+  deleteTask: (id) =>
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== id),
+    })),
 }));

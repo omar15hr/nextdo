@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { CalendarIcon, ToggleIcon, TrashIcon } from "./Icons";
 import { Task } from "../interfaces/task.interface";
+import { useTasksStore } from "../store/store";
 
 interface Props {
   task: Task;
@@ -21,6 +22,8 @@ const categoryStyles: Record<Task["category"], string> = {
 };
 
 export function TaskCard({ task }: Props) {
+  const deleteTask = useTasksStore((state) => state.deleteTask);
+
   return (
     <div className="flex items-center justify-between gap-5 bg-white py-4 px-6 rounded-md shadow">
       <div className="flex items-center gap-5">
@@ -59,9 +62,9 @@ export function TaskCard({ task }: Props) {
           </div>
         </div>
       </div>
-      <div>
+      <button onClick={() => deleteTask(task.id)}>
         <TrashIcon />
-      </div>
+      </button>
     </div>
   );
 }
