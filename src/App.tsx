@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { CategoryButton } from "./components/CategoryButton";
 import { Header } from "./components/Header";
 import { PlusIcon } from "./components/Icons";
 import { PriorityFilter } from "./components/PriorityFilter";
 import { TaskList } from "./components/TaskList";
+import { AddTaskForm } from "./components/AddTaskForm";
+import { AnimatePresence, motion } from "motion/react";
 
 const categories = [
   { text: "All Tasks", color: "bg-blue-400" },
@@ -14,6 +17,8 @@ const categories = [
 ];
 
 function App() {
+  const [isVisible, setIsVisible] = useState(true);
+
   return (
     <div className="flex flex-col bg-[#edede9] min-h-screen">
       <Header />
@@ -26,11 +31,31 @@ function App() {
           {categories.map(({ text, color }) => (
             <CategoryButton text={text} color={color} />
           ))}
-          <button className="flex items-center justify-center w-42 h-11 gap-2 p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow cursor-pointer transition duration-300 ease-in-out">
+          <motion.button
+            onClick={() => setIsVisible(!isVisible)}
+            whileTap={{ y: 1 }}
+            className="flex items-center justify-center w-42 h-11 gap-2 p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow cursor-pointer transition duration-300 ease-in-out"
+          >
             <PlusIcon />
             <span>New Task</span>
-          </button>
+          </motion.button>
         </div>
+
+        <div>
+          <AnimatePresence initial={false}>
+            {isVisible ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{ duration: 0.4 }}
+              >
+                <AddTaskForm onClose={() => setIsVisible(false)} />
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+        </div>
+
         <div className="flex flex-col justify-center rounded-md gap-2">
           <div className="flex items-center justify-between gap-5">
             <h2 className="text-xl">All Tasks</h2>
