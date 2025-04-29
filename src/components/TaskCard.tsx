@@ -14,17 +14,23 @@ interface Props {
 }
 
 const priorityStyles: Record<Task["priority"], string> = {
-  High: "bg-red-100 text-red-600",
-  Medium: "bg-orange-100 text-orange-600",
-  Low: "bg-green-100 text-green-600",
+  High: "bg-red-300 text-red-700",
+  Medium: "bg-orange-300 text-orange-700",
+  Low: "bg-green-300 text-green-700",
+};
+
+const priorityTasksStyles: Record<Task["priority"], string> = {
+  High: "bg-red-100",
+  Medium: "bg-orange-100",
+  Low: "bg-green-100",
 };
 
 const categoryStyles: Record<Task["category"], string> = {
-  Personal: "bg-green-500 text-white",
-  Health: "bg-purple-500 text-white",
-  Finance: "bg-yellow-500 text-white",
-  Projects: "bg-orange-500 text-white",
-  Work: "bg-sky-500 text-white",
+  Personal: "bg-green-600 text-white",
+  Health: "bg-purple-600 text-white",
+  Finance: "bg-yellow-600 text-white",
+  Projects: "bg-orange-600 text-white",
+  Work: "bg-sky-600 text-white",
 };
 
 export function TaskCard({ task }: Props) {
@@ -39,7 +45,13 @@ export function TaskCard({ task }: Props) {
   };
 
   return (
-    <div className="flex items-center justify-between gap-5 bg-white py-4 px-6 rounded-md shadow">
+    <div
+      className={clsx(
+        "flex items-center justify-between gap-5 py-4 px-6 rounded-md shadow-md",
+        priorityTasksStyles[task.priority],
+        task.completed && 'opacity-40'
+      )}
+    >
       <div className="flex items-center gap-5">
         <button className="cursor-grab">
           <ToggleIcon />
@@ -51,9 +63,6 @@ export function TaskCard({ task }: Props) {
 
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <span
-              className={`w-3 h-3 rounded-full inline-block bg-blue-500`}
-            ></span>
             <h3 className="font-bold">{task.title}</h3>
           </div>
           <div className="flex gap-2">
