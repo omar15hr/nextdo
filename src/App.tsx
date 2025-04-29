@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { CategoryButton } from "./components/CategoryButton";
 import { Header } from "./components/Header";
-import { PlusIcon } from "./components/Icons";
+import { CoinIcon, HeartIcon, PlusIcon, SuitcaseIcon, TagIcon, UserIcon, WorkIcon } from "./components/Icons";
 import { PriorityFilter } from "./components/PriorityFilter";
 import { TaskList } from "./components/TaskList";
 import { AddTaskForm } from "./components/AddTaskForm";
 import { AnimatePresence, motion } from "motion/react";
 
 const categories = [
-  { text: "All Tasks", color: "bg-blue-400" },
-  { text: "Personal", color: "bg-green-400" },
-  { text: "Healt", color: "bg-purple-400" },
-  { text: "Finance", color: "bg-yellow-400" },
-  { text: "Projects", color: "bg-orange-400" },
-  { text: "Work", color: "bg-sky-400" },
+  { text: "All Tasks", color: "text-blue-500", icon: <TagIcon /> },
+  { text: "Personal", color: "text-green-500", icon: <UserIcon /> },
+  { text: "Healt", color: "text-red-500", icon: <HeartIcon /> },
+  { text: "Finance", color: "text-yellow-500", icon: <CoinIcon /> },
+  { text: "Projects", color: "text-purple-500", icon: <SuitcaseIcon /> },
+  { text: "Work", color: "text-sky-500", icon: <WorkIcon /> },
 ];
 
 function App() {
@@ -28,8 +28,8 @@ function App() {
           <div className="bg-white p-5 rounded-md shadow"></div>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5">
-          {categories.map(({ text, color }) => (
-            <CategoryButton text={text} color={color} />
+          {categories.map(({ text, color, icon }) => (
+            <CategoryButton text={text} color={color} icon={icon} />
           ))}
           <motion.button
             onClick={() => setIsVisible(!isVisible)}
