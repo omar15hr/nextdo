@@ -8,6 +8,7 @@ import {
 } from "./Icons";
 import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
+import { motion } from "motion/react";
 
 interface Props {
   task: Task;
@@ -45,11 +46,17 @@ export function TaskCard({ task }: Props) {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.4,
+        scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+      }}
       className={clsx(
         "flex items-center justify-between gap-5 py-4 px-6 rounded-md shadow-md",
         priorityTasksStyles[task.priority],
-        task.completed && 'opacity-40'
+        task.completed && "opacity-40"
       )}
     >
       <div className="flex items-center gap-5">
@@ -92,6 +99,6 @@ export function TaskCard({ task }: Props) {
       <button onClick={() => deleteTask(task.id)}>
         <TrashIcon />
       </button>
-    </div>
+    </motion.div>
   );
 }

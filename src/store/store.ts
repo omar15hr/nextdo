@@ -20,7 +20,7 @@ const initialState: Task[] = [
   },
   {
     id: uuid(),
-    title: "Schudele meeting",
+    title: "Schedule meeting",
     priority: "Medium",
     category: "Personal",
     createdAt: new Date(),
@@ -40,7 +40,7 @@ export const useTasksStore = create<State>((set) => ({
   tasks: initialState,
   addTask: (task) =>
     set((state) => ({
-      tasks: [...state.tasks, task],
+      tasks: [task, ...state.tasks],
     })),
   deleteTask: (id) =>
     set((state) => ({
@@ -48,8 +48,6 @@ export const useTasksStore = create<State>((set) => ({
     })),
   toggleCompleteTask: (id: string, updatedTask: Task) =>
     set((state) => ({
-      tasks: state.tasks.map((task) =>
-        task.id === id ? updatedTask : task
-      ),
+      tasks: state.tasks.map((task) => (task.id === id ? updatedTask : task)),
     })),
 }));

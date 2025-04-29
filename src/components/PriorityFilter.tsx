@@ -4,7 +4,8 @@ export function PriorityFilter() {
       <label htmlFor="" className="text-gray-500 text-sm">
         Priority
       </label>
-      <select className="bg-white p-2 rounded-md shadow">
+      <select className="bg-white p-2 rounded-md shadow-md cursor-pointer">
+        <option value="">-</option>
         <option value="">Low</option>
         <option value="">Medium</option>
         <option value="">High</option>
