@@ -10,12 +10,12 @@ import {
 } from "../components/Icons";
 
 export const categories = [
-  { text: "All Tasks", color: "text-blue-500", icon: TagIcon },
+  { text: "Todas", color: "text-blue-500", icon: TagIcon },
   { text: "Personal", color: "text-green-500", icon: UserIcon },
-  { text: "Health", color: "text-red-500", icon: HeartIcon },
-  { text: "Finance", color: "text-yellow-500", icon: CoinIcon },
-  { text: "Projects", color: "text-purple-500", icon: SuitcaseIcon },
-  { text: "Work", color: "text-sky-500", icon: WorkIcon },
-  { text: "Learning", color: "text-indigo-500", icon: BookIcon },
-  { text: "Meeting", color: "text-pink-500", icon: CalendarIcon },
+  { text: "Salud", color: "text-red-500", icon: HeartIcon },
+  { text: "Finanzas", color: "text-yellow-500", icon: CoinIcon },
+  { text: "Proyectos", color: "text-purple-500", icon: SuitcaseIcon },
+  { text: "Trabajo", color: "text-sky-500", icon: WorkIcon },
+  { text: "Estudio", color: "text-indigo-500", icon: BookIcon },
+  { text: "Reuniones", color: "text-pink-500", icon: CalendarIcon },
 ];
