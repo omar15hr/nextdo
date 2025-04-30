@@ -10,13 +10,15 @@ export function Header() {
           </h1>
           <div className="flex gap-2">
             <a
-              href="#"
+              href="https://github.com/omar15hr/nextdo"
+              target="_blank"
               className="hover:bg-gray-100 p-2 rounded-full cursor-pointer transition duration-300 ease-in-out"
             >
               <GithubIcon />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/omar-alejandro-hernandez-diaz/"
+              target="_blank"
               className="hover:bg-gray-100 p-2 rounded-full cursor-pointer transition duration-300 ease-in-out"
             >
               <LinkedinIcon />

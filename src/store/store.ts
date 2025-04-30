@@ -55,11 +55,18 @@ export const useTasksStore = create<State>()(
         set((state) => ({
           tasks: [task, ...state.tasks],
         })),
-      deleteTask: (task) =>
+      deleteTask: (task) => {
         set((state) => ({
           tasks: state.tasks.filter((t) => t.id !== task.id),
           deletedTasks: [...state.deletedTasks, task],
-        })),
+        }));
+
+        setTimeout(() => {
+          set((state) => ({
+            deletedTasks: state.deletedTasks.filter((t) => t.id !== task.id),
+          }));
+        }, 10000);
+      },
       toggleCompleteTask: (id: string, updatedTask: Task) =>
         set((state) => ({
           tasks: state.tasks.map((task) =>
