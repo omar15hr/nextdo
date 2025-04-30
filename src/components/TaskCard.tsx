@@ -1,11 +1,5 @@
 import clsx from "clsx";
-import {
-  CalendarIcon,
-  CircleCheckIcon,
-  CircleIcon,
-  ToggleIcon,
-  TrashIcon,
-} from "./Icons";
+import { CircleCheckIcon, CircleIcon, ToggleIcon, TrashIcon } from "./Icons";
 import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
 import { motion } from "motion/react";
@@ -54,7 +48,7 @@ export function TaskCard({ task }: Props) {
         scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
       }}
       className={clsx(
-        "flex items-center justify-between gap-5 py-4 px-6 rounded-md shadow-md",
+        "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
         priorityTasksStyles[task.priority],
         task.completed && "opacity-40"
       )}
@@ -70,7 +64,7 @@ export function TaskCard({ task }: Props) {
 
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2">
-            <h3 className="font-bold">{task.title}</h3>
+            <h3 className="">{task.title}</h3>
           </div>
           <div className="flex gap-2">
             <span
@@ -89,16 +83,17 @@ export function TaskCard({ task }: Props) {
             >
               {task.category}
             </span>
-            <div className="flex gap-2 items-center bg-gray-200 text-gray-500 p-1 text-xs rounded-full px-2">
-              <CalendarIcon />
-              <span>{task.createdAt.toLocaleDateString()}</span>
-            </div>
           </div>
         </div>
       </div>
-      <button onClick={() => deleteTask(task.id)}>
-        <TrashIcon />
-      </button>
+      <div className="flex gap-2">
+        <div className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
+          <span>{task.createdAt.toLocaleDateString()}</span>
+        </div>
+        <button onClick={() => deleteTask(task.id)}>
+          <TrashIcon />
+        </button>
+      </div>
     </motion.div>
   );
 }

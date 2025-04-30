@@ -1,14 +1,10 @@
 import { useState } from "react";
 import { useTasksStore } from "../store/store";
-import { CloseIcon, PlusIcon } from "./Icons";
+import { PlusIcon } from "./Icons";
 import { v4 as uuid } from "uuid";
 import { Category, Priority } from "../interfaces/task.interface";
 
-interface Props {
-  onClose: () => void;
-}
-
-export function AddTaskForm({ onClose }: Props) {
+export function AddTaskForm() {
   const addTask = useTasksStore((state) => state.addTask);
 
   const [title, setTitle] = useState("");
@@ -32,20 +28,13 @@ export function AddTaskForm({ onClose }: Props) {
     setTitle("");
     setPriority("High");
     setCategory("Personal");
-    onClose();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center justify-center">
-      <div className="flex flex-col gap-4 justify-center bg-white p-4 rounded-lg shadow-lg w-xl">
+    <form onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-4 justify-center bg-white p-4 rounded-lg shadow-lg">
         <div className="flex justify-between items-center">
           <h2 className="font-bold font-inter">Add new task</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 cursor-pointer"
-          >
-            <CloseIcon />
-          </button>
         </div>
         <div className="flex flex-col gap-4">
           <input
@@ -92,7 +81,7 @@ export function AddTaskForm({ onClose }: Props) {
 
           <button
             type="submit"
-            className="flex items-center justify-center h-10 w-32 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer"
+            className="flex items-center gap-2 justify-center h-10 w-32 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer"
           >
             <PlusIcon />
             <span>Add Task</span>

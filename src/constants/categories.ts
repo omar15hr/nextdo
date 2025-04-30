@@ -5,6 +5,8 @@ import {
   TagIcon,
   UserIcon,
   WorkIcon,
+  BookIcon,
+  CalendarIcon,
 } from "../components/Icons";
 
 export const categories = [
@@ -14,4 +16,6 @@ export const categories = [
   { text: "Finance", color: "text-yellow-500", icon: CoinIcon },
   { text: "Projects", color: "text-purple-500", icon: SuitcaseIcon },
   { text: "Work", color: "text-sky-500", icon: WorkIcon },
+  { text: "Learning", color: "text-indigo-500", icon: BookIcon },
+  { text: "Meeting", color: "text-pink-500", icon: CalendarIcon },
 ];
