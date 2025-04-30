@@ -8,7 +8,7 @@ export function AddTaskForm() {
   const addTask = useTasksStore((state) => state.addTask);
 
   const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState<Priority>("High");
+  const [priority, setPriority] = useState<Priority>("Alta");
   const [category, setCategory] = useState<Category>("Personal");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,7 +26,7 @@ export function AddTaskForm() {
 
     // Reset y cerrar
     setTitle("");
-    setPriority("High");
+    setPriority("Alta");
     setCategory("Personal");
   };
 
@@ -51,7 +51,7 @@ export function AddTaskForm() {
 
           <div className="flex gap-5">
             <div className="flex flex-col gap-2 w-full">
-              <label htmlFor="" className="text-sm">
+              <label className="text-sm">
                 Prioridad
               </label>
               <select
@@ -59,14 +59,14 @@ export function AddTaskForm() {
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as Priority)}
               >
-                <option value="High">Alta</option>
-                <option value="Medium">Media</option>
-                <option value="Low">Baja</option>
+                <option value="Alta">Alta</option>
+                <option value="Media">Media</option>
+                <option value="Baja">Baja</option>
               </select>
             </div>
 
             <div className="flex flex-col gap-2 w-full">
-              <label htmlFor="" className="text-sm">
+              <label className="text-sm">
                 Categoría
               </label>
               <select
@@ -75,12 +75,12 @@ export function AddTaskForm() {
                 onChange={(e) => setCategory(e.target.value as Category)}
               >
                 <option value="Personal">Personal</option>
-                <option value="Health">Salud</option>
-                <option value="Finance">Finanzas</option>
-                <option value="Projects">Proyectos</option>
-                <option value="Work">Trabajo</option>
-                <option value="Learning">Estudio</option>
-                <option value="Meetings">Reuniones</option>
+                <option value="Salud">Salud</option>
+                <option value="Finanzas">Finanzas</option>
+                <option value="Proyectos">Proyectos</option>
+                <option value="Trabajo">Trabajo</option>
+                <option value="Estudio">Estudio</option>
+                <option value="Reuniones">Reuniones</option>
               </select>
             </div>
           </div>

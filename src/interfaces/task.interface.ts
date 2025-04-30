@@ -1,5 +1,5 @@
-export type Priority = "High" | "Medium" | "Low";
-export type Category = "Personal" | "Health" | "Finance" | "Projects" | "Work";
+export type Priority = "Alta" | "Media" | "Baja";
+export type Category = "Personal" | "Salud" | "Finanzas" | "Proyectos" | "Trabajo" | "Estudio" | "Reuniones";
 
 export interface Task {
   id: string;

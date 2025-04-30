@@ -10,23 +10,25 @@ interface Props {
 }
 
 const priorityStyles: Record<Task["priority"], string> = {
-  High: "bg-red-300 text-red-700",
-  Medium: "bg-orange-300 text-orange-700",
-  Low: "bg-green-300 text-green-700",
+  Alta: "bg-red-300 text-red-700",
+  Media: "bg-orange-300 text-orange-700",
+  Baja: "bg-green-300 text-green-700",
 };
 
 const priorityTasksStyles: Record<Task["priority"], string> = {
-  High: "bg-red-100",
-  Medium: "bg-orange-100",
-  Low: "bg-green-100",
+  Alta: "bg-red-100",
+  Media: "bg-orange-100",
+  Baja: "bg-green-100",
 };
 
 const categoryStyles: Record<Task["category"], string> = {
   Personal: "bg-green-600 text-white",
-  Health: "bg-purple-600 text-white",
-  Finance: "bg-yellow-600 text-white",
-  Projects: "bg-orange-600 text-white",
-  Work: "bg-sky-600 text-white",
+  Salud: "bg-purple-600 text-white",
+  Finanzas: "bg-yellow-600 text-white",
+  Proyectos: "bg-orange-600 text-white",
+  Trabajo: "bg-sky-600 text-white",
+  Estudio: "bg-emerald-400 text-white",
+  Reuniones: "bg-amber-400 text-white"
 };
 
 export function TaskCard({ task }: Props) {
