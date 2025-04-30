@@ -7,9 +7,10 @@ export function TaskList() {
   const tasks = useTasksStore((state) => state.tasks);
   const filterPriority = useTasksStore((state) => state.filterPriority);
 
-  const filteredTasks = filterPriority
-    ? tasks.filter((task) => task.priority === filterPriority)
-    : tasks;
+  const filteredTasks =
+    filterPriority === "Todas"
+      ? tasks
+      : tasks.filter((task) => task.priority === filterPriority);
 
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     if (a.completed === b.completed) return 0;
@@ -18,9 +19,9 @@ export function TaskList() {
 
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center">
+      <div className="flex gap-4 items-center">
         <h2 className="text-2xl font-bold text-blue-500">Tareas</h2>
-        {tasks.length > 0 && <PriorityFilter />}
+        <PriorityFilter />
       </div>
 
       {sortedTasks.length === 0 ? (

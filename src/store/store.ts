@@ -3,14 +3,16 @@ import { Task } from "../interfaces/task.interface";
 import { v4 as uuid } from "uuid";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-type Priority = Task["priority"] | "";
+type Priority = Task["priority"] | "Todas";
 
 interface State {
   // Tasks methods
   tasks: Task[];
+  deletedTasks: Task[];
   addTask: (task: Task) => void;
-  deleteTask: (id: string) => void;
+  deleteTask: (task: Task) => void;
   toggleCompleteTask: (id: string, updatedTask: Task) => void;
+  restoreTask: (taskId: string) => void;
   // Filters
   filterPriority: Priority;
   setFilterPriority: (priority: Priority) => void;
@@ -48,13 +50,15 @@ export const useTasksStore = create<State>()(
     (set) => ({
       // Tasks
       tasks: initialState,
+      deletedTasks: [],
       addTask: (task) =>
         set((state) => ({
           tasks: [task, ...state.tasks],
         })),
-      deleteTask: (id) =>
+      deleteTask: (task) =>
         set((state) => ({
-          tasks: state.tasks.filter((task) => task.id !== id),
+          tasks: state.tasks.filter((t) => t.id !== task.id),
+          deletedTasks: [...state.deletedTasks, task],
         })),
       toggleCompleteTask: (id: string, updatedTask: Task) =>
         set((state) => ({
@@ -62,8 +66,18 @@ export const useTasksStore = create<State>()(
             task.id === id ? updatedTask : task
           ),
         })),
+      restoreTask: (taskId) =>
+        set((state) => {
+          const task = state.deletedTasks.find((t) => t.id === taskId);
+          if (!task) return state;
+
+          return {
+            tasks: [task, ...state.tasks],
+            deletedTasks: state.deletedTasks.filter((t) => t.id !== taskId),
+          };
+        }),
       // Filters
-      filterPriority: "",
+      filterPriority: "Todas",
       setFilterPriority: (priority) => set({ filterPriority: priority }),
     }),
     {

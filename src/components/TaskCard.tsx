@@ -19,10 +19,11 @@ interface Props {
 export function TaskCard({ task }: Props) {
   const deleteTask = useTasksStore((state) => state.deleteTask);
   const toggleCompleteTask = useTasksStore((state) => state.toggleCompleteTask);
+  const restoreTask = useTasksStore((state) => state.restoreTask);
 
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const handleDelete = async() => {
+  const handleDelete = async () => {
     setIsRemoving(true);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -31,10 +32,15 @@ export function TaskCard({ task }: Props) {
       description: `${task.title} ha sido eliminada`,
       action: {
         label: "Deshacer",
-        onClick: () => {}
-      }
-    })
-    deleteTask(task.id);
+        onClick: () => {
+          restoreTask(task.id);
+        },
+        actionButtonStyle: {
+          color: "blue"
+        }
+      },
+    });
+    deleteTask(task);
   };
 
   const handleToggleComplete = () => {

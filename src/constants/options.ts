@@ -1,4 +1,4 @@
-export const priorityOptions = ["Alta", "Media", "Baja"] as const;
+export const priorityOptions = ["Alta", "Media", "Baja"];
 export const categoriesOptions = [
   "Personal",
   "Salud",
@@ -7,4 +7,4 @@ export const categoriesOptions = [
   "Trabajo",
   "Estudio",
   "Reuniones",
-] as const;
+];

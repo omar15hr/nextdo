@@ -2,6 +2,7 @@ import { PlusIcon } from "./Icons";
 import { Category, Priority } from "../interfaces/task.interface";
 import { useTaskForm } from "../hooks/useTaskForm";
 import { categoriesOptions, priorityOptions } from "../constants/options";
+import { SelectField } from "./SelectField";
 
 export function AddTaskForm() {
   const {
@@ -34,36 +35,20 @@ export function AddTaskForm() {
           </div>
 
           <div className="flex gap-5">
-            <div className="flex flex-col gap-2 w-full">
-              <label className="text-sm">Prioridad</label>
-              <select
-                id="priority"
-                className="border p-2 rounded-md border-slate-300"
-                value={priority}
-                onChange={(e) => setPriority(e.target.value as Priority)}
-              >
-                {priorityOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-2 w-full">
-              <label className="text-sm">Categoría</label>
-              <select
-                className="border p-2 rounded-md border-slate-300"
-                value={category}
-                onChange={(e) => setCategory(e.target.value as Category)}
-              >
-                {categoriesOptions.map((opt) => (
-                  <option key={opt} value={opt}>
-                    {opt}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <SelectField
+              id="priorityFilter"
+              label="Prioridad"
+              options={priorityOptions}
+              value={priority}
+              onChange={(e) => setPriority(e.target.value as Priority)}
+            />
+            <SelectField
+              id="categoryFilter"
+              label="Categoría"
+              options={categoriesOptions}
+              value={category}
+              onChange={(e) => setCategory(e.target.value as Category)}
+            />
           </div>
 
           <button
