@@ -1,34 +1,18 @@
-import { useState } from "react";
-import { useTasksStore } from "../store/store";
 import { PlusIcon } from "./Icons";
-import { v4 as uuid } from "uuid";
 import { Category, Priority } from "../interfaces/task.interface";
+import { useTaskForm } from "../hooks/useTaskForm";
+import { categoriesOptions, priorityOptions } from "../constants/options";
 
 export function AddTaskForm() {
-  const addTask = useTasksStore((state) => state.addTask);
-
-  const [title, setTitle] = useState("");
-  const [priority, setPriority] = useState<Priority>("Alta");
-  const [category, setCategory] = useState<Category>("Personal");
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!title.trim()) return;
-
-    addTask({
-      id: uuid(),
-      title,
-      priority,
-      category,
-      createdAt: new Date(),
-      completed: false,
-    });
-
-    // Reset y cerrar
-    setTitle("");
-    setPriority("Alta");
-    setCategory("Personal");
-  };
+  const {
+    title,
+    priority,
+    category,
+    setTitle,
+    setPriority,
+    setCategory,
+    handleSubmit,
+  } = useTaskForm();
 
   return (
     <form onSubmit={handleSubmit}>
@@ -51,36 +35,33 @@ export function AddTaskForm() {
 
           <div className="flex gap-5">
             <div className="flex flex-col gap-2 w-full">
-              <label className="text-sm">
-                Prioridad
-              </label>
+              <label className="text-sm">Prioridad</label>
               <select
+                id="priority"
                 className="border p-2 rounded-md border-slate-300"
                 value={priority}
                 onChange={(e) => setPriority(e.target.value as Priority)}
               >
-                <option value="Alta">Alta</option>
-                <option value="Media">Media</option>
-                <option value="Baja">Baja</option>
+                {priorityOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
               </select>
             </div>
 
             <div className="flex flex-col gap-2 w-full">
-              <label className="text-sm">
-                Categoría
-              </label>
+              <label className="text-sm">Categoría</label>
               <select
                 className="border p-2 rounded-md border-slate-300"
                 value={category}
                 onChange={(e) => setCategory(e.target.value as Category)}
               >
-                <option value="Personal">Personal</option>
-                <option value="Salud">Salud</option>
-                <option value="Finanzas">Finanzas</option>
-                <option value="Proyectos">Proyectos</option>
-                <option value="Trabajo">Trabajo</option>
-                <option value="Estudio">Estudio</option>
-                <option value="Reuniones">Reuniones</option>
+                {categoriesOptions.map((opt) => (
+                  <option key={opt} value={opt}>
+                    {opt}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

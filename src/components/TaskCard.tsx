@@ -2,35 +2,18 @@ import clsx from "clsx";
 import { CircleCheckIcon, CircleIcon, ToggleIcon, TrashIcon } from "./Icons";
 import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
-import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { formatDate } from "../utils/date-format";
+import {
+  categoryStyles,
+  priorityStyles,
+  priorityTasksStyles,
+} from "../constants/taskStyles";
+import { CardWithAnimations } from "./CardWithAnimations";
 
 interface Props {
   task: Task;
 }
-
-const priorityStyles: Record<Task["priority"], string> = {
-  Alta: "bg-red-300 text-red-700",
-  Media: "bg-orange-300 text-orange-700",
-  Baja: "bg-green-300 text-green-700",
-};
-
-const priorityTasksStyles: Record<Task["priority"], string> = {
-  Alta: "bg-red-100",
-  Media: "bg-orange-100",
-  Baja: "bg-green-100",
-};
-
-const categoryStyles: Record<Task["category"], string> = {
-  Personal: "bg-green-600 text-white",
-  Salud: "bg-purple-600 text-white",
-  Finanzas: "bg-yellow-600 text-white",
-  Proyectos: "bg-orange-600 text-white",
-  Trabajo: "bg-sky-600 text-white",
-  Estudio: "bg-emerald-400 text-white",
-  Reuniones: "bg-amber-400 text-white",
-};
 
 export function TaskCard({ task }: Props) {
   const deleteTask = useTasksStore((state) => state.deleteTask);
@@ -52,20 +35,8 @@ export function TaskCard({ task }: Props) {
   };
 
   return (
-    <AnimatePresence mode="popLayout">
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{
-          opacity: isRemoving ? 0 : task.completed ? 0.4 : 1,
-          x: isRemoving ? -100 : 0,
-          scale: isRemoving ? 0.8 : 1,
-        }}
-        transition={{
-          duration: 0.4,
-          ease: "easeInOut",
-          scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
-        }}
-        exit={{ opacity: 0, scale: 0.8 }}
+    <CardWithAnimations isRemoving={isRemoving} completed={task.completed}>
+      <div
         className={clsx(
           "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
           priorityTasksStyles[task.priority],
@@ -114,7 +85,7 @@ export function TaskCard({ task }: Props) {
             <TrashIcon />
           </button>
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </CardWithAnimations>
   );
 }
