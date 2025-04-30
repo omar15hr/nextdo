@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="flex flex-col bg-gray-200 min-h-screen">
       <Header />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-15 p-5">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-5 p-5">
         <CategoryFilter />
         <TaskList />
       </div>

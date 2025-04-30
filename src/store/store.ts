@@ -3,11 +3,17 @@ import { Task } from "../interfaces/task.interface";
 import { v4 as uuid } from "uuid";
 import { createJSONStorage, persist } from "zustand/middleware";
 
+type Priority = Task["priority"] | "";
+
 interface State {
+  // Tasks methods
   tasks: Task[];
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
   toggleCompleteTask: (id: string, updatedTask: Task) => void;
+  // Filters
+  filterPriority: Priority;
+  setFilterPriority: (priority: Priority) => void;
 }
 
 const initialState: Task[] = [
@@ -40,6 +46,7 @@ const initialState: Task[] = [
 export const useTasksStore = create<State>()(
   persist(
     (set) => ({
+      // Tasks
       tasks: initialState,
       addTask: (task) =>
         set((state) => ({
@@ -55,6 +62,9 @@ export const useTasksStore = create<State>()(
             task.id === id ? updatedTask : task
           ),
         })),
+      // Filters
+      filterPriority: "",
+      setFilterPriority: (priority) => set({ filterPriority: priority}),
     }),
     {
       name: "task-store",

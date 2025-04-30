@@ -27,7 +27,7 @@ export function AddTaskForm() {
             <input
               type="text"
               placeholder="¿Qué necesitas hacer?"
-              className="p-2 border w-full rounded-md border-gray-300"
+              className="p-2 border w-full rounded-md border-gray-300 focus:border-blue-500"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
@@ -68,7 +68,7 @@ export function AddTaskForm() {
 
           <button
             type="submit"
-            className="flex items-center gap-2 justify-center h-10 w-42 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer"
+            className="flex items-center gap-2 justify-center h-10 w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer"
           >
             <PlusIcon />
             <span className="text-sm">Agregar Tarea</span>

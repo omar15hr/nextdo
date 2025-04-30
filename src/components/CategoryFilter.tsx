@@ -1,6 +1,6 @@
 import { categories } from "../constants/categories";
 import { CategoryButton } from "./CategoryButton";
-import { AddTaskForm } from "./AddTaskForm";
+import { AddTaskForm } from "./TaskForm";
 
 export function CategoryFilter() {
   return (

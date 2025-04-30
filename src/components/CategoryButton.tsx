@@ -6,7 +6,7 @@ interface Props {
 
 export function CategoryButton({ text, color, icon }: Props) {
   return (
-    <button className="flex items-center justify-center w-42 gap-2 p-2 bg-white hover:bg-white/80 rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out">
+    <button className="flex items-center justify-center w-42 gap-2 p-2 bg-white hover:bg-white/50 rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out">
       <span className={`${color}`}>{icon}</span>
       <span className="text-sm">{text}</span>
       <span className="bg-gray-200 p-1 px-2 rounded-full text-xs text-gray-600">
