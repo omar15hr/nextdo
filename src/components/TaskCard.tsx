@@ -10,6 +10,7 @@ import {
   priorityTasksStyles,
 } from "../constants/taskStyles";
 import { CardWithAnimations } from "./CardWithAnimations";
+import { toast } from "sonner";
 
 interface Props {
   task: Task;
@@ -21,9 +22,18 @@ export function TaskCard({ task }: Props) {
 
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const handleDelete = async () => {
+  const handleDelete = async() => {
     setIsRemoving(true);
     await new Promise((resolve) => setTimeout(resolve, 500));
+
+    toast.success("Tarea eliminada", {
+      duration: 3000,
+      description: `${task.title} ha sido eliminada`,
+      action: {
+        label: "Deshacer",
+        onClick: () => {}
+      }
+    })
     deleteTask(task.id);
   };
 
@@ -40,7 +50,7 @@ export function TaskCard({ task }: Props) {
         className={clsx(
           "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
           priorityTasksStyles[task.priority],
-          task.completed && "opacity-40"
+          task.completed && "opacity-80"
         )}
       >
         <div className="flex items-center gap-5">

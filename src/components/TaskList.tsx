@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { useTasksStore } from "../store/store";
 import { PriorityFilter } from "./PriorityFilter";
 import { TaskCard } from "./TaskCard";
@@ -29,6 +30,7 @@ export function TaskList() {
       ) : (
         sortedTasks.map((task) => <TaskCard key={task.id} task={task} />)
       )}
+      <Toaster />
     </div>
   );
 }
