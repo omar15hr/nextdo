@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { Task } from "../interfaces/task.interface";
 import { v4 as uuid } from "uuid";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface State {
   tasks: Task[];
@@ -36,18 +37,36 @@ const initialState: Task[] = [
   },
 ];
 
-export const useTasksStore = create<State>((set) => ({
-  tasks: initialState,
-  addTask: (task) =>
-    set((state) => ({
-      tasks: [task, ...state.tasks],
-    })),
-  deleteTask: (id) =>
-    set((state) => ({
-      tasks: state.tasks.filter((task) => task.id !== id),
-    })),
-  toggleCompleteTask: (id: string, updatedTask: Task) =>
-    set((state) => ({
-      tasks: state.tasks.map((task) => (task.id === id ? updatedTask : task)),
-    })),
-}));
+export const useTasksStore = create<State>()(
+  persist(
+    (set) => ({
+      tasks: initialState,
+      addTask: (task) =>
+        set((state) => ({
+          tasks: [task, ...state.tasks],
+        })),
+      deleteTask: (id) =>
+        set((state) => ({
+          tasks: state.tasks.filter((task) => task.id !== id),
+        })),
+      toggleCompleteTask: (id: string, updatedTask: Task) =>
+        set((state) => ({
+          tasks: state.tasks.map((task) =>
+            task.id === id ? updatedTask : task
+          ),
+        })),
+    }),
+    {
+      name: "task-store",
+      storage: createJSONStorage(() => sessionStorage),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state.tasks = state.tasks.map((task) => ({
+            ...task,
+            createdAt: new Date(task.createdAt),
+          }));
+        }
+      },
+    }
+  )
+);

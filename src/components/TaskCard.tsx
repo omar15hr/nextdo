@@ -4,6 +4,7 @@ import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { formatDate } from "../utils/date-format";
 
 interface Props {
   task: Task;
@@ -28,7 +29,7 @@ const categoryStyles: Record<Task["category"], string> = {
   Proyectos: "bg-orange-600 text-white",
   Trabajo: "bg-sky-600 text-white",
   Estudio: "bg-emerald-400 text-white",
-  Reuniones: "bg-amber-400 text-white"
+  Reuniones: "bg-amber-400 text-white",
 };
 
 export function TaskCard({ task }: Props) {
@@ -37,11 +38,11 @@ export function TaskCard({ task }: Props) {
 
   const [isRemoving, setIsRemoving] = useState(false);
 
-  const handleDelete = async() => {
+  const handleDelete = async () => {
     setIsRemoving(true);
-    await new Promise(resolve => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     deleteTask(task.id);
-  }
+  };
 
   const handleToggleComplete = () => {
     toggleCompleteTask(task.id, {
@@ -105,9 +106,10 @@ export function TaskCard({ task }: Props) {
           </div>
         </div>
         <div className="flex gap-2">
-          <div className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
-            <span>{task.createdAt.toLocaleDateString()}</span>
-          </div>
+          <span className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
+            {formatDate(task.createdAt)}
+          </span>
+
           <button onClick={handleDelete}>
             <TrashIcon />
           </button>
