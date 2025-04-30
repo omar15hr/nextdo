@@ -32,18 +32,22 @@ export function AddTaskForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-4 justify-center bg-white p-4 rounded-lg shadow-lg">
-        <div className="flex justify-between items-center">
-          <h2 className="font-bold font-inter">Add new task</h2>
-        </div>
-        <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 justify-center bg-gradient-to-br  from-purple-50 to-blue-50 p-4 rounded-lg shadow-lg">
+        <h2 className="font-bold font-inter bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text text-2xl text-center">
+          New Task
+        </h2>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Task Name</label>
+          <div className="relative">
           <input
             type="text"
-            placeholder="Task title..."
-            className="p-2 bg-slate-100 rounded-md w-full focus:border-1 focus:outline-sky-500 focus:outline focus:border-sky-500"
+            placeholder="What are you going to do?"
+            className=""
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          </div>
 
           <div className="flex gap-5">
             <div className="flex flex-col gap-2 w-full">

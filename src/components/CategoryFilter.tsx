@@ -5,7 +5,7 @@ import { AddTaskForm } from "./AddTaskForm";
 export function CategoryFilter() {
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 items-center justify-center">
         {categories.map(({ text, color, icon: Icon }) => (
           <CategoryButton
             key={text}
