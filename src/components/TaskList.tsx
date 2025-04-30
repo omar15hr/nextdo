@@ -8,7 +8,7 @@ export function TaskList() {
   return (
     <div className="space-y-3">
       <div className="flex justify-between">
-        <h2 className="text-xl font-bold">All Tasks</h2>
+        <h2 className="text-2xl font-bold text-blue-500">Tareas</h2>
         {tasks.length > 0 ? <PriorityFilter /> : ""}
       </div>
       {tasks.length === 0 ? (

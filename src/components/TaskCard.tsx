@@ -2,7 +2,8 @@ import clsx from "clsx";
 import { CircleCheckIcon, CircleIcon, ToggleIcon, TrashIcon } from "./Icons";
 import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useState } from "react";
 
 interface Props {
   task: Task;
@@ -32,6 +33,14 @@ export function TaskCard({ task }: Props) {
   const deleteTask = useTasksStore((state) => state.deleteTask);
   const toggleCompleteTask = useTasksStore((state) => state.toggleCompleteTask);
 
+  const [isRemoving, setIsRemoving] = useState(false);
+
+  const handleDelete = async() => {
+    setIsRemoving(true);
+    await new Promise(resolve => setTimeout(resolve, 500));
+    deleteTask(task.id);
+  }
+
   const handleToggleComplete = () => {
     toggleCompleteTask(task.id, {
       ...task,
@@ -40,60 +49,68 @@ export function TaskCard({ task }: Props) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.4,
-        scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
-      }}
-      className={clsx(
-        "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
-        priorityTasksStyles[task.priority],
-        task.completed && "opacity-40"
-      )}
-    >
-      <div className="flex items-center gap-5">
-        <button className="cursor-grab">
-          <ToggleIcon />
-        </button>
+    <AnimatePresence mode="popLayout">
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{
+          opacity: isRemoving ? 0 : task.completed ? 0.4 : 1,
+          x: isRemoving ? -100 : 0,
+          scale: isRemoving ? 0.8 : 1,
+        }}
+        transition={{
+          duration: 0.4,
+          ease: "easeInOut",
+          scale: { type: "spring", visualDuration: 0.4, bounce: 0.2 },
+        }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        className={clsx(
+          "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
+          priorityTasksStyles[task.priority],
+          task.completed && "opacity-40"
+        )}
+      >
+        <div className="flex items-center gap-5">
+          <button className="cursor-grab">
+            <ToggleIcon />
+          </button>
 
-        <button onClick={handleToggleComplete}>
-          {task.completed ? <CircleCheckIcon /> : <CircleIcon />}
-        </button>
+          <button onClick={handleToggleComplete}>
+            {task.completed ? <CircleCheckIcon /> : <CircleIcon />}
+          </button>
 
-        <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2">
-            <h3 className="">{task.title}</h3>
-          </div>
-          <div className="flex gap-2">
-            <span
-              className={clsx(
-                "flex items-center p-1 text-xs rounded-full px-2",
-                priorityStyles[task.priority]
-              )}
-            >
-              {task.priority}
-            </span>
-            <span
-              className={clsx(
-                "flex items-center p-1 text-xs rounded-full px-2",
-                categoryStyles[task.category]
-              )}
-            >
-              {task.category}
-            </span>
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2">
+              <h3 className="">{task.title}</h3>
+            </div>
+            <div className="flex gap-2">
+              <span
+                className={clsx(
+                  "flex items-center p-1 text-xs rounded-full px-2",
+                  priorityStyles[task.priority]
+                )}
+              >
+                {task.priority}
+              </span>
+              <span
+                className={clsx(
+                  "flex items-center p-1 text-xs rounded-full px-2",
+                  categoryStyles[task.category]
+                )}
+              >
+                {task.category}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex gap-2">
-        <div className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
-          <span>{task.createdAt.toLocaleDateString()}</span>
+        <div className="flex gap-2">
+          <div className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
+            <span>{task.createdAt.toLocaleDateString()}</span>
+          </div>
+          <button onClick={handleDelete}>
+            <TrashIcon />
+          </button>
         </div>
-        <button onClick={() => deleteTask(task.id)}>
-          <TrashIcon />
-        </button>
-      </div>
-    </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
