@@ -64,7 +64,7 @@ export const useTasksStore = create<State>()(
         })),
       // Filters
       filterPriority: "",
-      setFilterPriority: (priority) => set({ filterPriority: priority}),
+      setFilterPriority: (priority) => set({ filterPriority: priority }),
     }),
     {
       name: "task-store",
