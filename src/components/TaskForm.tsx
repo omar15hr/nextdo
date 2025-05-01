@@ -3,12 +3,14 @@ import { Category, Priority } from "../interfaces/task.interface";
 import { useTaskForm } from "../hooks/useTaskForm";
 import { categoriesOptions, priorityOptions } from "../constants/options";
 import { SelectField } from "./SelectField";
+import clsx from "clsx";
 
 export function AddTaskForm() {
   const {
     title,
     priority,
     category,
+    errors,
     setTitle,
     setPriority,
     setCategory,
@@ -24,15 +26,24 @@ export function AddTaskForm() {
 
         <div className="space-y-2 flex flex-col gap-1">
           <label className="text-sm font-medium">Título</label>
-          <div className="relative">
+            <div className="relative">
             <input
               type="text"
               placeholder="¿Qué necesitas hacer?"
-              className="p-2 border w-full rounded-md border-gray-300 focus:border-blue-500"
+              className={clsx(
+                "p-2 w-full rounded-md border outline-none focus:ring-2 transition-all duration-200", 
+                {
+                  "border-red-500 focus:ring-red-500/20": errors,
+                  "border-gray-300 focus:ring-blue-500/20 focus:border-blue-500": !errors
+                }
+              )}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-          </div>
+            {errors && (
+              <p className="text-red-500 text-sm mt-1">{errors}</p>
+            )}
+            </div>
 
           <div className="flex gap-5">
             <SelectField

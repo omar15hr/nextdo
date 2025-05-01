@@ -9,10 +9,14 @@ export function useTaskForm() {
   const [title, setTitle] = useState("");
   const [priority, setPriority] = useState<Priority>("Alta");
   const [category, setCategory] = useState<Category>("Personal");
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!title.trim()) {
+      setErrors("El título es obligatorio");
+      return;
+    };
 
     addTask({
       id: uuid(),
@@ -26,12 +30,14 @@ export function useTaskForm() {
     setTitle("");
     setPriority("Alta");
     setCategory("Personal");
+    setErrors("");
   };
 
   return {
     title,
     priority,
     category,
+    errors,
     setTitle,
     setPriority,
     setCategory,
