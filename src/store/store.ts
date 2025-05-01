@@ -15,7 +15,9 @@ interface State {
   restoreTask: (taskId: string) => void;
   // Filters
   filterPriority: Priority;
+  filterCategory: string;
   setFilterPriority: (priority: Priority) => void;
+  setFilterCategory: (category: string) => void;
 }
 
 const initialState: Task[] = [
@@ -85,7 +87,9 @@ export const useTasksStore = create<State>()(
         }),
       // Filters
       filterPriority: "Todas",
+      filterCategory: "Todas",
       setFilterPriority: (priority) => set({ filterPriority: priority }),
+      setFilterCategory: (category) => set({ filterCategory: category }),
     }),
     {
       name: "task-store",

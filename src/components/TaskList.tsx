@@ -2,15 +2,17 @@ import { Toaster } from "sonner";
 import { useTasksStore } from "../store/store";
 import { PriorityFilter } from "./PriorityFilter";
 import { TaskCard } from "./TaskCard";
+import { filterTasks } from "../utils/filter-tasks";
 
 export function TaskList() {
   const tasks = useTasksStore((state) => state.tasks);
   const filterPriority = useTasksStore((state) => state.filterPriority);
+  const filterCategory = useTasksStore((state) => state.filterCategory);
 
-  const filteredTasks =
-    filterPriority === "Todas"
-      ? tasks
-      : tasks.filter((task) => task.priority === filterPriority);
+  const filteredTasks = filterTasks(tasks, {
+    priority: filterPriority,
+    category: filterCategory,
+  });
 
   const sortedTasks = [...filteredTasks].sort((a, b) => {
     if (a.completed === b.completed) return 0;
