@@ -13,6 +13,7 @@ export function CategoryButton({ text, color, icon, onClick }: Props) {
   const filterCategory = useTasksStore((state) => state.filterCategory);
   const isSelected = filterCategory === text;
   const styles = styleMap[text] ?? {};
+  const count = useTasksStore((state) => state.tasksCountByCategory(text)) ?? 0;
 
   return (
     <button
@@ -29,7 +30,7 @@ export function CategoryButton({ text, color, icon, onClick }: Props) {
       <span className={`${color}`}>{icon}</span>
       <span className="text-sm">{text}</span>
       <span className="bg-gray-300 p-1 px-2 rounded-full text-xs text-gray-800">
-        10
+        {count}
       </span>
     </button>
   );

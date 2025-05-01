@@ -18,6 +18,8 @@ interface State {
   filterCategory: string;
   setFilterPriority: (priority: Priority) => void;
   setFilterCategory: (category: string) => void;
+  // Count method
+  tasksCountByCategory: (category: string) => void;
 }
 
 const initialState: Task[] = [
@@ -49,7 +51,7 @@ const initialState: Task[] = [
 
 export const useTasksStore = create<State>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       // Tasks
       tasks: initialState,
       deletedTasks: [],
@@ -90,6 +92,12 @@ export const useTasksStore = create<State>()(
       filterCategory: "Todas",
       setFilterPriority: (priority) => set({ filterPriority: priority }),
       setFilterCategory: (category) => set({ filterCategory: category }),
+      // Count method
+      tasksCountByCategory: (category: string) => {
+        return category === "Todas"
+          ? get().tasks.length
+          : get().tasks.filter((task) => task.category === category).length;
+      }
     }),
     {
       name: "task-store",
