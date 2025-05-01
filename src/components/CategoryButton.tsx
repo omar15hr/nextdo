@@ -29,7 +29,7 @@ export function CategoryButton({ text, color, icon, onClick }: Props) {
     >
       <span className={`${color}`}>{icon}</span>
       <span className="text-sm">{text}</span>
-      <span className="bg-gray-300 p-1 px-2 rounded-full text-xs text-gray-800">
+      <span className="bg-gray-300 p-1 px-3 rounded-full text-xs text-gray-800">
         {count}
       </span>
     </button>
