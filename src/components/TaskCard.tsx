@@ -11,6 +11,8 @@ import {
 } from "../constants/taskStyles";
 import { CardWithAnimations } from "./CardWithAnimations";
 import { toast } from "sonner";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
   task: Task;
@@ -22,6 +24,9 @@ export function TaskCard({ task }: Props) {
   const restoreTask = useTasksStore((state) => state.restoreTask);
 
   const [isRemoving, setIsRemoving] = useState(false);
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: task.id });
 
   const handleDelete = async () => {
     setIsRemoving(true);
@@ -36,8 +41,8 @@ export function TaskCard({ task }: Props) {
           restoreTask(task.id);
         },
         actionButtonStyle: {
-          color: "blue"
-        }
+          color: "blue",
+        },
       },
     });
     deleteTask(task);
@@ -50,9 +55,15 @@ export function TaskCard({ task }: Props) {
     });
   };
 
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
     <CardWithAnimations isRemoving={isRemoving} completed={task.completed}>
       <div
+        style={style}
         className={clsx(
           "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
           priorityTasksStyles[task.priority],
@@ -60,7 +71,12 @@ export function TaskCard({ task }: Props) {
         )}
       >
         <div className="flex items-center gap-5">
-          <button className="cursor-grab">
+          <button
+            className="cursor-grab"
+            ref={setNodeRef}
+            {...attributes}
+            {...listeners}
+          >
             <ToggleIcon />
           </button>
 

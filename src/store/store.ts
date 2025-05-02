@@ -6,13 +6,15 @@ import { createJSONStorage, persist } from "zustand/middleware";
 type Priority = Task["priority"] | "Todas";
 
 interface State {
-  // Tasks methods
+  // Tasks
   tasks: Task[];
   deletedTasks: Task[];
+  // Tasks methods
   addTask: (task: Task) => void;
   deleteTask: (task: Task) => void;
   toggleCompleteTask: (id: string, updatedTask: Task) => void;
   restoreTask: (taskId: string) => void;
+  reorderTasksByIds: (newOrder: string[]) => void;
   // Filters
   filterPriority: Priority;
   filterCategory: string;
@@ -55,6 +57,7 @@ export const useTasksStore = create<State>()(
       // Tasks
       tasks: initialState,
       deletedTasks: [],
+      // Tasks Methods
       addTask: (task) =>
         set((state) => ({
           tasks: [task, ...state.tasks],
@@ -87,6 +90,16 @@ export const useTasksStore = create<State>()(
             deletedTasks: state.deletedTasks.filter((t) => t.id !== taskId),
           };
         }),
+      reorderTasksByIds: (newOrder: string[]) =>
+        set((state) => {
+          const taskMap = new Map(state.tasks.map((task) => [task.id, task]));
+          const reordered = newOrder
+            .map((id) => taskMap.get(id))
+            .filter((task): task is Task => task !== undefined);
+
+          return { tasks: reordered };
+        }),
+
       // Filters
       filterPriority: "Todas",
       filterCategory: "Todas",
@@ -97,7 +110,7 @@ export const useTasksStore = create<State>()(
         return category === "Todas"
           ? get().tasks.length
           : get().tasks.filter((task) => task.category === category).length;
-      }
+      },
     }),
     {
       name: "task-store",
