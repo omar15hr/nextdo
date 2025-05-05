@@ -3,7 +3,7 @@ import { useTasksStore } from "../store/store";
 import { CategoryButton } from "./CategoryButton";
 import { AddTaskForm } from "./TaskForm";
 
-export function CategoryFilter() {
+export function TaskOverviewPanel() {
   const setFilterCategory = useTasksStore((state) => state.setFilterCategory);
   return (
     <div className="flex flex-col gap-5">
