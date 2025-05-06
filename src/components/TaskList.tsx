@@ -1,7 +1,14 @@
 import { Toaster } from "sonner";
 import { PriorityFilter } from "./PriorityFilter";
 import { TaskCard } from "./TaskCard";
-import { closestCenter, DndContext } from "@dnd-kit/core";
+import {
+  closestCenter,
+  DndContext,
+  PointerSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -10,8 +17,23 @@ import { useTaskOrder } from "../hooks/useTaskOrder";
 
 export function TaskList() {
   const { sortedTasks, handleDragEnd } = useTaskOrder();
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    })
+  );
+
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={handleDragEnd}
+    >
       <div className="space-y-3">
         <div className="flex gap-4 items-center">
           <h2 className="text-2xl font-bold text-blue-500">Tareas</h2>
