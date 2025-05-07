@@ -45,7 +45,7 @@ export function TaskList() {
           strategy={verticalListSortingStrategy}
         >
           {sortedTasks.length === 0 ? (
-            <div className="text-center py-8 text-gray-500 bg-gray-300 rounded-xl">
+            <div className="text-center py-8 text-indigo-100 bg-gray-700 rounded-xl">
               No hay tareas.
             </div>
           ) : (
