@@ -5,7 +5,7 @@ import { categoriesOptions, priorityOptions } from "../constants/options";
 import { SelectField } from "./SelectField";
 import clsx from "clsx";
 
-export function AddTaskForm() {
+export function TaskForm() {
   const {
     title,
     priority,
@@ -19,31 +19,25 @@ export function AddTaskForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-5 justify-center bg-gray-700 p-4 rounded-lg shadow-lg">
-        <h2 className="font-bold font-inter text-xl text-center text-indigo-100">
-          Nueva Tarea
-        </h2>
-
-        <div className="space-y-2 flex flex-col gap-1 text-indigo-100">
-          <label className="text-sm font-medium">Título</label>
-            <div className="relative">
+      <div className="flex gap-5 justify-center p-4">
+        <div className="space-y-2 flex items-center gap-3">
+          <div className="flex flex-col gap-1">
+            <label className="text-sm text-indigo-100">Título</label>
             <input
               type="text"
               placeholder="¿Qué necesitas hacer?"
               className={clsx(
-                "p-2 w-full rounded-md border outline-none focus:ring-2 transition-all duration-200", 
+                "p-2 w-64 h-10 rounded-md text-indigo-100 border outline-none focus:ring-2 transition-all duration-200",
                 {
                   "border-red-500 focus:ring-red-500/20": errors,
-                  "border-gray-300 focus:ring-blue-500/20 focus:border-indigo-100": !errors
+                  "border-slate-600 focus:ring-blue-500/20 focus:border-indigo-100":
+                    !errors,
                 }
               )}
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            {errors && (
-              <p className="text-red-500 text-sm mt-1">{errors}</p>
-            )}
-            </div>
+          </div>
 
           <div className="flex gap-5">
             <SelectField
@@ -64,7 +58,7 @@ export function AddTaskForm() {
 
           <button
             type="submit"
-            className="flex items-center gap-2 justify-center h-10 w-full bg-indigo-100 hover:bg-indigo-200 text-gray-700 p-2 rounded-md cursor-pointer"
+            className="flex mt-4 items-center gap-2 justify-center h-9 w-40 bg-slate-700 hover:bg-gray-700/50 text-indigo-100 p-2 rounded-md cursor-pointer"
           >
             <PlusIcon />
             <span className="text-sm">Agregar Tarea</span>

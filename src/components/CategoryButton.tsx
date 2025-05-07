@@ -19,17 +19,17 @@ export function CategoryButton({ text, color, icon, onClick }: Props) {
     <button
       onClick={onClick}
       className={clsx(
-        "flex items-center justify-center w-42 gap-2 p-2 rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out",
+        "flex items-center justify-center w-38 gap-2 p-2 rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out",
         isSelected && styles.bg,
         isSelected && styles.ring,
         isSelected && styles.text,
         isSelected && "ring-1",
-        !isSelected && "bg-white hover:bg-white/50"
+        !isSelected && "bg-slate-700 hover:bg-white/20 text-indigo-100"
       )}
     >
       <span className={`${color}`}>{icon}</span>
       <span className="text-sm">{text}</span>
-      <span className="bg-gray-300 p-1 px-3 rounded-full text-xs text-gray-800">
+      <span className="bg-slate-600 p-1 px-3 rounded-full text-xs text-indigo-100">
         {count}
       </span>
     </button>

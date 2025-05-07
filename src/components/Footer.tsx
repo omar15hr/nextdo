@@ -2,7 +2,7 @@ import { GithubIcon, LinkedinIcon } from "./Icons";
 
 export function Footer() {
   return (
-    <footer className="bg-gray-700 text-indigo-100 py-5">
+    <footer className="bg-slate-700 text-indigo-100 py-5">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
           <div className="mb-6 md:mb-0">

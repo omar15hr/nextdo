@@ -8,7 +8,6 @@ export function PriorityFilter() {
   return (
     <SelectField
       id="priorityFilter"
-      label="Prioridad"
       options={["Todas", "Baja", "Media", "Alta"]}
       value={filterPriority}
       onChange={(e) => setFilterPriority(e.target.value as Priority)}

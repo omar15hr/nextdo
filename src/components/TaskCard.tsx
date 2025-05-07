@@ -4,11 +4,7 @@ import { Task } from "../interfaces/task.interface";
 import { useTasksStore } from "../store/store";
 import { useState } from "react";
 import { formatDate } from "../utils/date-format";
-import {
-  categoryStyles,
-  priorityStyles,
-  priorityTasksStyles,
-} from "../constants/taskStyles";
+import { categoryStyles, priorityStyles } from "../constants/taskStyles";
 import { CardWithAnimations } from "./CardWithAnimations";
 import { toast } from "sonner";
 import { useSortable } from "@dnd-kit/sortable";
@@ -65,8 +61,7 @@ export function TaskCard({ task }: Props) {
       <div
         style={style}
         className={clsx(
-          "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md",
-          priorityTasksStyles[task.priority],
+          "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md bg-slate-700",
           task.completed && "opacity-80"
         )}
       >
@@ -86,7 +81,7 @@ export function TaskCard({ task }: Props) {
 
           <div className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
-              <h3 className="">{task.title}</h3>
+              <h3 className="text-indigo-100">{task.title}</h3>
             </div>
             <div className="flex gap-2">
               <span
@@ -109,7 +104,7 @@ export function TaskCard({ task }: Props) {
           </div>
         </div>
         <div className="flex gap-2">
-          <span className="flex gap-2 items-center text-gray-600 text-xs rounded-full px-2">
+          <span className="flex gap-2 items-center text-indigo-100 text-xs rounded-full px-2">
             {formatDate(task.createdAt)}
           </span>
 
