@@ -19,12 +19,12 @@ export function AddTaskForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex flex-col gap-5 justify-center bg-white p-4 rounded-lg shadow-lg">
-        <h2 className="font-bold font-inter text-xl text-center text-blue-500">
+      <div className="flex flex-col gap-5 justify-center bg-gray-700 p-4 rounded-lg shadow-lg">
+        <h2 className="font-bold font-inter text-xl text-center text-indigo-100">
           Nueva Tarea
         </h2>
 
-        <div className="space-y-2 flex flex-col gap-1">
+        <div className="space-y-2 flex flex-col gap-1 text-indigo-100">
           <label className="text-sm font-medium">Título</label>
             <div className="relative">
             <input
@@ -34,7 +34,7 @@ export function AddTaskForm() {
                 "p-2 w-full rounded-md border outline-none focus:ring-2 transition-all duration-200", 
                 {
                   "border-red-500 focus:ring-red-500/20": errors,
-                  "border-gray-300 focus:ring-blue-500/20 focus:border-blue-500": !errors
+                  "border-gray-300 focus:ring-blue-500/20 focus:border-indigo-100": !errors
                 }
               )}
               value={title}
@@ -64,7 +64,7 @@ export function AddTaskForm() {
 
           <button
             type="submit"
-            className="flex items-center gap-2 justify-center h-10 w-full bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-md cursor-pointer"
+            className="flex items-center gap-2 justify-center h-10 w-full bg-indigo-100 hover:bg-indigo-200 text-gray-700 p-2 rounded-md cursor-pointer"
           >
             <PlusIcon />
             <span className="text-sm">Agregar Tarea</span>

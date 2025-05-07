@@ -36,7 +36,7 @@ export function TaskList() {
     >
       <div className="space-y-3">
         <div className="flex gap-4 items-center">
-          <h2 className="text-2xl font-bold text-blue-500">Tareas</h2>
+          <h2 className="text-2xl font-bold text-gray-700">Tareas</h2>
           <PriorityFilter />
         </div>
 

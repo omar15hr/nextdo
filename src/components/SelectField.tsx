@@ -19,13 +19,13 @@ export function SelectField({
 }: SelectFieldProps) {
   return (
     <div className="flex flex-col gap-2 w-full">
-      <label htmlFor={id} className="text-sm text-gray-700">
+      <label htmlFor={id} className="text-sm text-indigo-100">
         {label}
       </label>
       <div className="relative w-full max-w-xs">
         <select
           id={id}
-          className={`appearance-none w-full bg-white text-sm text-gray-700 px-4 py-2 pr-10 rounded-md shadow-sm focus:outline-none focus:ring-0 border border-gray-300 hover:border-gray-400 transition-colors duration-200 ${className}`}
+          className={`appearance-none w-full bg-gray-700 text-sm text-indigo-100 px-4 py-2 pr-10 rounded-md shadow-sm focus:outline-none focus:ring-0 border border-gray-300 hover:border-gray-400 transition-colors duration-200 ${className}`}
           value={value}
           onChange={onChange}
         >
