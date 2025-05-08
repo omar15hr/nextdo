@@ -38,3 +38,9 @@ html, body {
     to { opacity: 0; }
   }
 }
+
+.draggable-item {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

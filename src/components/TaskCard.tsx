@@ -54,6 +54,7 @@ export function TaskCard({ task }: Props) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    touchAction: 'none'
   };
 
   return (

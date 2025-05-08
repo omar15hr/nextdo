@@ -24,6 +24,7 @@ export function TaskList() {
       activationConstraint: {
         delay: 250,
         tolerance: 5,
+        distance: 8,
       },
     })
   );
