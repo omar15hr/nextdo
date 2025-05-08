@@ -61,10 +61,16 @@ export function TaskCard({ task }: Props) {
       <div
         style={style}
         className={clsx(
-          "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md bg-slate-700",
+          "flex gap-5 py-4 px-6 rounded-md justify-between shadow-md bg-slate-700 relative",
           task.completed && "opacity-80"
         )}
       >
+        <div
+          className={clsx(
+            "absolute left-0 top-0 w-1 h-full rounded-l-md",
+            priorityStyles[task.priority]
+          )}
+        />
         <div className="flex items-center gap-5">
           <button
             className="cursor-grab"

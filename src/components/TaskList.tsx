@@ -34,7 +34,7 @@ export function TaskList() {
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
     >
-      <div className="space-y-3 mt-10">
+      <div className="space-y-3 my-10">
         <div className="flex gap-4 items-center">
           <h2 className="text-2xl font-bold text-indigo-100">Tareas</h2>
           <PriorityFilter />
