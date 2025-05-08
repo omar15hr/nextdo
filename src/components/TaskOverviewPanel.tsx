@@ -5,7 +5,7 @@ import { CategoryButton } from "./CategoryButton";
 export function TaskOverviewPanel() {
   const setFilterCategory = useTasksStore((state) => state.setFilterCategory);
   return (
-    <div className="flex gap-2">
+    <div className="flex flex-wrap justify-center mt-5 gap-2">
       {categories.map(({ text, color, icon: Icon }) => (
         <CategoryButton
           key={text}

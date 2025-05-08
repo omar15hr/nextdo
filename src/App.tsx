@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-800">
       <Header />
-      <main className="flex-grow max-w-7xl mx-auto">
+      <main className="flex flex-col">
         <TaskForm />
         <TaskOverviewPanel />
         <TaskList />

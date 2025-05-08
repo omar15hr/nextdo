@@ -19,8 +19,8 @@ export function TaskForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex gap-5 justify-center p-4">
-        <div className="space-y-2 flex items-center gap-3">
+      <div className="flex flex-wrap gap-5 justify-center p-4">
+        <div className="space-y-2 flex flex-wrap items-center gap-3">
           <div className="flex flex-col gap-1">
             <label className="text-sm text-indigo-100">Título</label>
             <input
@@ -39,7 +39,7 @@ export function TaskForm() {
             />
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex flex-wrap gap-5">
             <SelectField
               id="priorityFilter"
               label="Prioridad"
